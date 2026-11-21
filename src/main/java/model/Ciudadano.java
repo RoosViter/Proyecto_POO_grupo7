@@ -20,4 +20,23 @@ public class Ciudadano extends Persona {
     super(nombres, apellidos);
     this.cedula = cedula;
   }
+  
+  /**
+   * Obtiene la cedula del ciudadano.
+   *
+   * @return Cedula de 10 digitos.
+   */
+  public String getCedula() {
+    return cedula;
+  }
+
+  /**
+   * Establece la cedula del ciudadano.
+   *
+   * @param cedula Nueva cedula.
+   */
+  public void setCedula(String cedula) {
+    this.cedula = cedula;
+  }
 }
+
