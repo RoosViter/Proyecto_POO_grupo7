@@ -1,6 +1,6 @@
 package model;
 
-import.java.util.Objects;
+import java.util.Objects;
 
 /**
  * Representa a un ciudadano que realiza llamadas de emergencia al ECU 911.
