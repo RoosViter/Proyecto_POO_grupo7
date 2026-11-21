@@ -59,4 +59,26 @@ public class NotaSeguimiento {
   public void setTexto(String texto) {
     this.texto = texto;
   }
+  
+// Para mostrar la nota como texto facil de leer en consola
+  @Override
+  public String toString() {
+    String nombreOp = (operador != null) ? operador.toString() : "Sin operador";
+    return codigo + " | " + fechaHora + " | " + nmbreOp + " | " + texto;
+  }
+
+  // Compara si dos notas son la misma por su cod
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof NotaSeguimiento)) return false;
+    NotaSeguimiento otra = (NotaSeguimiento) o;
+    return Objects.equals(codigo, otra.codigo);
+  }
+
+  // Genera el hash usando elcod de la nota
+  @Override
+  public int hashCode() {
+    return Objects.hash(codigo);
+  }
 }
