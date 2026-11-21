@@ -74,3 +74,32 @@ public class Persona {
     return getNombreCompleto();
   }
 
+  // Retorna el nombre completo como representacion en texto de la persona.
+  @Override
+  public String toString() {
+    return getNombreCompleto();
+  }
+
+  // Compara dos personas por nombres y apellidos (y misma clase exacta).
+  @Override 
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Persona persona = (Persona) o;
+    return Objects.equals(nombres, persona.nombres) && Objects.equals(apellidos, persona.apellidos);
+  }
+
+  // Genera el codigo hash acorde a nombres y apellidos para colecciones.
+  @Override
+  public int hashCode() {
+    return Objects.hash(nombres, apellidos);
+  }
+}
+      
+      
+    
+
