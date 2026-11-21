@@ -150,4 +150,31 @@ public class Llamada {
     }
     return false;
   }
+
+  // Para mostrar la llamada en forma resumida
+  @Override
+  public String toString() {
+    String nombreCiudadano = (ciudadano != null) ? ciudadano.getNombreCompleto() : "Sin ciudadano";
+    return codigo + " | " + fechaHora + " | " + nombreCiudadano
+        + " | " + tipoEmergencia + " | " + ciudad + " | " + estado;
+  }
+
+  // Comparamos  si dos llamadas son iguales por su cod
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Llamada llamada = (Llamada) o;
+    return Objects.equals(codigo, llamada.codigo);
+  }
+
+  // Genera el hash usando el código de la llamada
+  @Override
+  public int hashCode() {
+    return Objects.hash(codigo);
+  }
 }
