@@ -46,6 +46,79 @@ public class Llamada {
     }
     return "LL-" + numero;
   }
+  // Getters para leer los datos de llamada
+  public String getCodigo() {
+    return codigo;
+  }
+
+  public String getFechaHora() {
+    return fechaHora;
+  }
+
+  public Operador getOperador() {
+    return operador;
+  }
+
+  public Ciudadano getCiudadano() {
+    return ciudadano;
+  }
+
+  public String getTipoEmergencia() {
+    return tipoEmergencia;
+  }
+
+  public String getCiudad() {
+    return ciudad;
+  }
+
+  public String getBarrio() {
+    return barrio;
+  }
+
+  public String getDetalle() {
+    return detalle;
+  }
+
+  public String getEstado() {
+    return estado;
+  }
+
+  public ArrayList<NotaSeguimiento> getNotas() {
+    return notas;
+  }
+
+  // Setters pr si toca cambiar algun dato después
+  public void setFechaHora(String fechaHora) {
+    this.fechaHora = fechaHora;
+  }
+
+  public void setOperador(Operador operador) {
+    this.operador = operador;
+  }
+
+  public void setCiudadano(Ciudadano ciudadano) {
+    this.ciudadano = ciudadano;
+  }
+
+  public void setTipoEmergencia(String tipoEmergencia) {
+    this.tipoEmergencia = tipoEmergencia;
+  }
+
+  public void setCiudad(String ciudad) {
+    this.ciudad = ciudad;
+  }
+
+  public void setBarrio(String barrio) {
+    this.barrio = barrio;
+  }
+
+  public void setDetalle(String detalle) {
+    this.detalle = detalle;
+  }
+
+  public void setEstado(String estado) {
+    this.estado = estado;
+  }
 
   // Para obtener fecha antes del espacio
   public String getSoloFecha() {
@@ -61,7 +134,7 @@ public class Llamada {
   // Revisa cual es el siguiente estado permitido
   public String obtenerSiguienteEstado() {
     if (estado.equals("Registrada")) {
-      return "En atención";
+      return "En atnción";
     } else if (estado.equals("En atención")) {
       return "Atendida";
     }
