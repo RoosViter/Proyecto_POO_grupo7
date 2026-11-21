@@ -1,4 +1,4 @@
-package model:
+package model;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ public class Persona {
     * Constructor de la clase Persona.
     * 
     * @param nombres Nombres de la persona.
-    * @param apeliidos Apellidos de la persona.
+    * @param apellidos Apellidos de la persona.
     */
   public Persona(String nombres, String apellidos) {
     this.nombres = nombres;
@@ -38,9 +38,9 @@ public class Persona {
   }
 
   /**
-     * Establece los nombres de la persona.
+     * Obtiene los apellidos de la persona.
      *
-     * @param nombres Nuevos nombres.
+     * @return Apellidos de la persona.
      */
   public String getApellidos() {
     return apellidos;
@@ -51,7 +51,7 @@ public class Persona {
      *
      * @param apellidos Nuevos apellidos.
      */
-  public votd setApellidos(String apellidos) {
+  public void setApellidos(String apellidos) {
     this.apellidos = apellidos;
   }
 
@@ -61,7 +61,7 @@ public class Persona {
      * @return Nombre completo de la persona.
      */
   public String getNombreCompleto() {
-    return nombres + " " + apeliidos;
+    return nombres + " " + apellidos;
   }
 
   /**
