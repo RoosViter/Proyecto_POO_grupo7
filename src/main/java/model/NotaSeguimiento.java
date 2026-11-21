@@ -30,7 +30,7 @@ public class NotaSeguimiento {
     return "NT-" + numero;
   }
   
-  // Getters para poder leer los datos de la nota desde otrs clases
+  // Getters para poder leer los datos de la nota desde otras clases
   public String getCodigo() {
     return codigo;
   }
@@ -60,11 +60,11 @@ public class NotaSeguimiento {
     this.texto = texto;
   }
   
-// Para mostrar la nota como texto facil de leer en consola
+// Para mostrar la nota como texto fácil de leer en consola
   @Override
   public String toString() {
     String nombreOp = (operador != null) ? operador.toString() : "Sin operador";
-    return codigo + " | " + fechaHora + " | " + nmbreOp + " | " + texto;
+    return codigo + " | " + fechaHora + " | " + nombreOp + " | " + texto;
   }
 
   // Compara si dos notas son la misma por su cod
@@ -76,7 +76,7 @@ public class NotaSeguimiento {
     return Objects.equals(codigo, otra.codigo);
   }
 
-  // Genera el hash usando elcod de la nota
+  // Genera el hash usando el cod de la nota
   @Override
   public int hashCode() {
     return Objects.hash(codigo);
