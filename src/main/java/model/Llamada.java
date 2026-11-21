@@ -20,4 +20,61 @@ public class Llamada {
   private String estado;
   // Lista de notas que se van agregando a llamada
   private ArrayList<NotaSeguimiento> notas;
+
+  // Constructor que arma el cod, pone estado inicial en "Registrada" y crea la lista de notas
+  public Llamada(String fechaHora, Operador operador, Ciudadano ciudadano,
+                 String tipoEmergencia, String ciudad, String barrio, String detalle) {
+    contadorLlamadas++;
+    this.codigo = generarCodigo(contadorLlamadas);
+    this.fechaHora = fechaHora;
+    this.operador = operador;
+    this.ciudadano = ciudadano;
+    this.tipoEmergencia = tipoEmergencia;
+    this.ciudad = ciudad;
+    this.barrio = barrio;
+    this.detalle = detalle;
+    this.estado = "Registrada";
+    this.notas = new ArrayList<NotaSeguimiento>();
+  }
+
+  // Le ponemosceros adelante para que quede tipo LL-001, LL-010, etc.
+  private static String generarCodigo(int numero) {
+    if (numero < 10) {
+      return "LL-00" + numero;
+    } else if (numero < 100) {
+      return "LL-0" + numero;
+    }
+    return "LL-" + numero;
+  }
+
+  // Para obtener fecha antes del espacio
+  public String getSoloFecha() {
+    String[] partes = fechaHora.split(" ");
+    return partes[0];
+  }
+
+  // Agrega una nota nueva a la lista 
+  public void agregarNota(NotaSeguimiento nota) {
+    notas.add(nota);
+  }
+
+  // Revisa cual es el siguiente estado permitido
+  public String obtenerSiguienteEstado() {
+    if (estado.equals("Registrada")) {
+      return "En atención";
+    } else if (estado.equals("En atención")) {
+      return "Atendida";
+    }
+    return null;
+  }
+
+  // Cambia el estado al siguiente paso si todavia se puede avanza
+  public boolean avanzarEstado() {
+    String siguiente = obtenerSiguienteEstado();
+    if (siguiente != null) {
+      this.estado = siguiente;
+      return true;
+    }
+    return false;
+  }
 }
