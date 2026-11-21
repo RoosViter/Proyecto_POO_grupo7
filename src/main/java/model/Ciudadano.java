@@ -38,5 +38,36 @@ public class Ciudadano extends Persona {
   public void setCedula(String cedula) {
     this.cedula = cedula;
   }
+
+  // Sobrescribe el resumen de Persona para incluir el numero de cedula.
+  @Override
+  public String obtenerResumen() {
+    return getNombreCompleto() + " (C.I. " + cedula + ")";
+  }
+  
+  // Devuelve el resumen con nombre y cedula como representacion en texto.
+  @Override
+  public String toString() {
+    return obtenerResumen();
+  }
+
+  // Compara dos ciudadanos por su cedula y misma clase exacta.
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Ciudadano ciudadano = (Ciudadano) o;
+    return Objects.equals(cedula, ciudadano.cedula);
+  }
+
+  // Calcula el codigo hash a partir de la cedula para colecciones.
+  @Override
+  public int hashCode() {
+    return Objects.hash(cedula);
+  }
 }
 
