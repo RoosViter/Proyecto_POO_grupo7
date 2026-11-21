@@ -29,4 +29,34 @@ public class NotaSeguimiento {
     }
     return "NT-" + numero;
   }
+  
+  // Getters para poder leer los datos de la nota desde otrs clases
+  public String getCodigo() {
+    return codigo;
+  }
+
+  public String getFechaHora() {
+    return fechaHora;
+  }
+
+  public Operador getOperador() {
+    return operador;
+  }
+
+  public String getTexto() {
+    return texto;
+  }
+
+  // Setters por si toca cambiar alguno de los datos despues
+  public void setFechaHora(String fechaHora) {
+    this.fechaHora = fechaHora;
+  }
+
+  public void setOperador(Operador operador) {
+    this.operador = operador;
+  }
+
+  public void setTexto(String texto) {
+    this.texto = texto;
+  }
 }
