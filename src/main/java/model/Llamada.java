@@ -37,7 +37,7 @@ public class Llamada {
     this.notas = new ArrayList<NotaSeguimiento>();
   }
 
-  // Le ponemosceros adelante para que quede tipo LL-001, LL-010, etc.
+  // Le ponemos ceros adelante para que quede tipo LL-001, LL-010, etc.
   private static String generarCodigo(int numero) {
     if (numero < 10) {
       return "LL-00" + numero;
@@ -87,7 +87,7 @@ public class Llamada {
     return notas;
   }
 
-  // Setters pr si toca cambiar algun dato después
+  // Setters por si toca cambiar algun dato después
   public void setFechaHora(String fechaHora) {
     this.fechaHora = fechaHora;
   }
@@ -134,14 +134,14 @@ public class Llamada {
   // Revisa cual es el siguiente estado permitido
   public String obtenerSiguienteEstado() {
     if (estado.equals("Registrada")) {
-      return "En atnción";
+      return "En atención";
     } else if (estado.equals("En atención")) {
       return "Atendida";
     }
     return null;
   }
 
-  // Cambia el estado al siguiente paso si todavia se puede avanza
+  // Cambia el estado al siguiente paso si todavia se puede avanzar
   public boolean avanzarEstado() {
     String siguiente = obtenerSiguienteEstado();
     if (siguiente != null) {
