@@ -309,6 +309,7 @@ public class ConsolaView{
       }
     }
   }
+  //se pide los datos para crear un operador nuevo
   private void agregarOperador() {
     System.out.println();
     System.out.println("[Administrar operadores > Agregar operador]");
@@ -325,6 +326,39 @@ public class ConsolaView{
     Operador nuevo = controller.agregarOperador(nombres, apellidos, turno, email);
     System.out.println("¡Éxito! El operador " + nuevo.getNombreCompleto()
                        + " ha sido registrado con el código " + nuevo.getCodigo() + ".");
+    pausar("Presione ENTER para actualizar y volver a Administrar operadores...");
+  }
+  //se borra operador solo si no tiene llamadas atendidad
+  private void eliminarOperador() {
+    System.out.println();
+    System.out.println("[Administrar operadores > Eliminar operador]");
+
+    if (controller.getOperadores().isEmpty()) {
+      System.out.println("No hay operadores registrados.");
+      pausar("Presione ENTER para continuar...");
+      return;
+    }
+    String codigo = leerTexto("> Ingrese el código del operador que desea eliminar (o ENTER para volver): ");
+    if (codigo.isEmpty()) {
+      return;
+    }
+    Operador op = controller.buscarOperadorPorCodigo(codigo);
+    if (op == null) {
+      System.out.println("¡Error! No se encontró un operador con el código " + codigo + ".");
+    } else{
+      int atendidas = controller.contarLlamadasDeOperador(op);
+      if (atendidas > 0) {
+        System.out.println("¡No se puede eliminar! El operador " + op.getNombreCompleto()
+                           + " tiene " + atendidas + " llamada(s) registrada(s).");
+      } else{
+        if (leerConfirmacion("¿Está seguro de que desea eliminar a " + op.getNombreCompleto() + "? (S/N): ")) {
+          controller.eliminarOperador(op);
+          System.out.println("¡Éxito! El registro del operador ha sido removido.");
+        }else{
+          System.out.println("Eliminación cancelada.");
+        }
+      }
+    }
     pausar("Presione ENTER para actualizar y volver a Administrar operadores...");
   }
 }
