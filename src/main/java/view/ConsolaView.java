@@ -32,6 +32,25 @@ public class ConsolaView{
       System.out.println("[4] Administrar notas de seguimiento");
       System.out.println("[5] Salir");
       System.out.println("Fecha y hora actuales del sistema: "+controller.obtenerFechaHoraSistema());
+      //creamos el switch con las posibles respuestas del usuario
+      int opcion= leerOpcion("> Seleccione una opcion (1-5) <",1,5);
+      switch(opcion){
+        case 1:
+          menuLlamadas();
+          break;
+        case 2:
+          menuOperadores();
+        case 3:
+          menuCiudadanos();
+        case 4:
+          menuNotasSeguimiento();
+        case 5:
+          System.out.println("Saliendo del sistema ECU 911. Hasta pronto!");
+          salir=true;
+          break;
+        default:
+          break;
+      }
     }
   }
 }
