@@ -131,6 +131,29 @@ public class SistemaController{
   public ArrayList<Operador> getOperadores(){
     return operadores;
   }
+  public Operador agregarOperador (String nombres, String apellidos, String turno, String email){
+    Operador nuevo= new Operador (nombres, apellidos, turno, email);
+    operadores.add(nuevo);
+    return nuevo;
+  }
+  public Operador buscarOperadorPorCodigo(String codigo){
+    for (Operador op: operadores){
+      if (op.getCodigo().equalsIgnoreCase(codigo)){
+        return op;
+        
+      }
+    }
+    return null;
+  }
+  public int contarLlamadasDeOperador(Operador operador){
+    int total=0;
+    for (Llamada ll: llamadas){
+      if (ll.getOperador().equals(operador)){
+        total++;
+      }
+    }
+    return total;
+  }
   
   
   
