@@ -185,6 +185,12 @@ public class SistemaController{
     }
     return historial;
   }
+  public NotaSeguimiento agregarNotaSeguimiento(Llamada llamada, Operador operador, String texto){
+    String fechaHora= obtenerFechaHoraSistema();
+    NotaSeguimiento nota= new NotaSeguimiento(fechaHora, operador, texto);
+    llamada.agregarNota(nota);
+    return nota;
+  }
   
   
   
