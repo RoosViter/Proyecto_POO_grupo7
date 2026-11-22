@@ -225,4 +225,25 @@ public class ConsolaView{
     }
     pausar("Presione ENTER para regresar al Menú de Llamadas...");
   }
+  //esto es para anular una llamada
+  private void anularLlamada(){
+    System.out.println();
+    System.out.println("[Menú Principal > 1. Llamadas > 1.4. Anular llamada]");
+
+    ArrayList<Llamada> anulables = controller.obtenerLlamadasAnulablesHoy();
+    if (anulables.isEmpty()) {
+      System.out.println("No existen llamadas en estado \"Registrada\" del día de hoy ("
+              + controller.getFechaActualSistema() + ") para anular.");
+      pausar("Presione ENTER para regresar al Menú de Llamadas...");
+      return;
+    }
+    System.out.println("Llamadas que se pueden anular (Registradas hoy):");
+    mostrarSeparador();
+    System.out.println("CÓDIGO | FECHA Y HORA | CIUDADANO | TIPO");
+    for (Llamada ll : anulables) {
+      System.out.println(ll.getCodigo() + " | " + ll.getFechaHora() + " | "
+              + ll.getCiudadano().getNombreCompleto() + " | " + ll.getTipoEmergencia());
+    }
+    mostrarSeparador();
+  }
 }
