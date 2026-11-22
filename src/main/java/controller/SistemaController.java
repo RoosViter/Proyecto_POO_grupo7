@@ -78,6 +78,26 @@ public class SistemaController{
     }
     return anulables;
   }
+  public Ciudadano buscarCiudadanoPorCedula(String cedula){
+    for (Ciudadano c: ciudadanos){
+      if (c.getCedula().equals(cedula)){
+        return c;
+      }
+    }
+    return null;
+    
+  }
+  public Ciudadano registrarCiudadanoSiNoExiste(String cedula, String nombres, String apellidos){
+    Ciudadano existente= buscarCiudadanoPorCedula(cedula);
+    if (existente != null){
+      return existente;
+      
+    }
+    Ciudadano nuevo= new Ciudadano(cedula, nombres, apellidos);
+    ciudadanos.add(nuevo);
+    return nuevo;
+    
+  }
   
   
   
