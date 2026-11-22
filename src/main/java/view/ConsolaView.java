@@ -392,6 +392,33 @@ public class ConsolaView{
           break;
         default:
           break;
+      }
     }
   }
+  //muestra las llamadas que ha hecho cada ciudadano por su cedula
+  private void consultarHistorialCiudadano() {
+    String cedula = leerTexto("> Ingrese la cédula del ciudadano: ");
+    Ciudadano ciudadano = controller.buscarCiudadanoPorCedula(cedula);
+
+    if (ciudadano == null) {
+      System.out.println("¡Error! No se encontró ningún ciudadano registrado con la cédula " + cedula + ".");
+    } else{
+      System.out.println();
+      System.out.println("HISTORIAL DE LLAMADAS - " + ciudadano.obtenerResumen());
+      mostrarSeparador();
+      System.out.println("CÓDIGO | FECHA Y HORA | TIPO | BARRIO | ESTADO");
+      ArrayList<Llamada> historial = controller.obtenerHistorialCiudadano(ciudadano);
+      if (historial.isEmpty()) {
+        System.out.println("Este ciudadano no tiene llamadas activas en el historial.");
+      } else{
+        for (Llamada ll : historial) {
+          System.out.println(ll.getCodigo() + " | " + ll.getFechaHora() + " | "
+                             + ll.getTipoEmergencia() + " | " + ll.getBarrio() + " | " + ll.getEstado());
+        }
+      }
+      mostrarSeparador();
+    }
+    pausar("Presione ENTER para regresar a Administrar ciudadanos...");
+  }
+  
 }
