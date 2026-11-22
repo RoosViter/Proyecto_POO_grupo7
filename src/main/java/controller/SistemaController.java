@@ -40,6 +40,22 @@ public class SistemaController{
 
     
   }
+  public String obtenerFechaHoraSistema(){
+    return LocalDateTime.now().format(FORMATO_FECHA_HORA);
+    
+    
+  } 
+  public String getFechaActualSistema(){
+    return LocalDateTime.now().format(FORMATO_SOLO_FECHA);
+    
+  }
+  public ArrayList<Llamada> obtenerLlamadasOrdenadasReciente() {
+    ArrayList<Llamada> resultado= new ArrayList<Llamada>();
+    for (int= llamadas.size() - 1; i>=0; i--){
+      resultado.add(llamadas.get(i));
+    }
+    return resultado;
+  }
   
   
   
