@@ -181,4 +181,48 @@ public class ConsolaView{
     System.out.println("-> Estado: " + nuevaLlamada.getEstado());
     pausar("Presione ENTER para regresar al Menú de Llamadas...");
   }
+  //metodo para cambiar el estado de una llamada pendiente
+  private void actualizarEstadoLlamada(){
+    System.out.println();
+    System.out.println("[Menú Principal > 1. Llamadas > 1.3. Actualizar estado]");
+
+    ArrayList<Llamada> pendientes = controller.obtenerLlamadasPendientes();
+    if (pendientes.isEmpty()) {
+      System.out.println("No hay llamadas pendientes por actualizar.");
+      pausar("Presione ENTER para regresar al Menú de Llamadas...");
+      return;
+    }
+    //se muestran las llamadas pendientes
+    System.out.println("Llamadas pendientes:");
+    mostrarSeparador();
+    System.out.println("CÓDIGO | CIUDADANO | TIPO | ESTADO ACTUAL");
+    for (Llamada ll : pendientes) {
+      System.out.println(ll.getCodigo() + " | " + ll.getCiudadano().getNombreCompleto()
+                         + " | " + ll.getTipoEmergencia() + " | " + ll.getEstado());
+    }
+    mostrarSeparador();
+
+    String codigo = leerTexto("> Ingrese el código de la llamada (o ENTER para volver): ");
+    if (codigo.isEmpty()) {
+      return;
+    }
+    //se valida si existe o si ya esta siendo atendida antes de avanzar de estado
+    Llamada seleccionada = controller.buscarLlamadaPorCodigo(codigo);
+    if (seleccionada == null) {
+      System.out.println("¡Error! No se encontró una llamada con el código " + codigo + ".");
+    } else if(seleccionada.getEstado().equals("Atendida")){
+      System.out.println("¡Error! La llamada ya está en estado Atendida y no puede modificarse.");
+    } else{
+      String estadoActual = seleccionada.getEstado();
+      String nuevoEstado = seleccionada.obtenerSiguienteEstado();
+      System.out.println("El estado actual es \"" + estadoActual + "\". El nuevo estado será \"" + nuevoEstado + "\".");
+      if (leerConfirmacion("¿Confirmar el cambio? (S/N): ")) {
+        controller.avanzarEstadoLlamada(seleccionada);
+        System.out.println("¡Éxito! La llamada " + seleccionada.getCodigo() + " ahora está \"" + seleccionada.getEstado() + "\".");
+      } else{
+        System.out.println("Operación cancelada.");
+      }
+    }
+    pausar("Presione ENTER para regresar al Menú de Llamadas...");
+  }
 }
