@@ -361,4 +361,37 @@ public class ConsolaView{
     }
     pausar("Presione ENTER para actualizar y volver a Administrar operadores...");
   }
+  //menu para ver ciudadanos y su historial
+  private void menuCiudadanos() {
+    boolean regresar = false;
+    while (!regresar) {
+      System.out.println();
+      System.out.println("SISTEMA DE REGISTRO DE LLAMADAS ECU 911 (Versión 1.0)");
+      System.out.println("[Menú Principal > 3. Administrar ciudadanos]");
+      System.out.println("Listado de ciudadanos registrados:");
+      mostrarSeparador();
+      System.out.println("CÉDULA | NOMBRE COMPLETO | TOTAL LLAMADAS");
+      for (Ciudadano c : controller.getCiudadanos()) {
+        int total = controller.contarLlamadasDeCiudadano(c);
+        System.out.println(c.getCedula() + " | " + c.getNombreCompleto() + " | " + total);
+      }
+      mostrarSeparador();
+      
+      System.out.println("¿Qué acción desea realizar?");
+      System.out.println("[1] Consultar historial de llamadas de un ciudadano");
+      System.out.println("[2] Regresar al Menú Principal");
+
+      int opcion = leerOpcion("> Seleccione una opción (1-2): ", 1, 2);
+
+      switch (opcion) {
+        case 1:
+          consultarHistorialCiudadano();
+          break;
+        case 2:
+          regresar=true;
+          break;
+        default:
+          break;
+    }
+  }
 }
