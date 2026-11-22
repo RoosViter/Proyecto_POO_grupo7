@@ -87,4 +87,23 @@ public class ConsolaView{
       }
     }
   }
+  private void listarLlamadas(){
+    System.out.println();
+    System.out.println("[Menú Principal > 1. Llamadas > 1.1. Lista de llamadas]");
+    ArrayList<Llamada> lista = controller.obtenerLlamadasOrdenadasRecientes();
+    System.out.println("Se encontraron " + lista.size() + " llamadas registradas.");
+
+    if (lista.isEmpty()) {
+      System.out.println("No hay llamadas registradas en el sistema.");
+    } else{
+      mostrarSeparador();
+      System.out.println("CÓDIGO | FECHA Y HORA | CIUDADANO | TIPO | CIUDAD | ESTADO");
+      mostrarSeparador();
+      for (Llamada ll : lista) {
+        System.out.println(ll.toString());
+      }
+      mostrarSeparador();
+    }
+    pausar("Presione ENTER para regresar al Menú de Llamadas...");
+  }
 }
