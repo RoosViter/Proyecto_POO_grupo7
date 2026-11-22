@@ -497,4 +497,44 @@ public class ConsolaView{
     System.out.println("-> Operador: " + operadorSeleccionado.getNombreCompleto());
     pausar("Presione ENTER para actualizar y volver a Notas de seguimiento...");
   }
+  // para separar tablas en consola
+  private void mostrarSeparador(){
+    System.out.println("-------------------------------------------------------------------------");
+  }
+  // pausa para que den enter
+  private void pausar(String mensaje) {
+    System.out.print(mensaje);
+    sc.nextLine();
+  }
+  // lee texto normal sin espacios extra
+  private String leerTexto(String mensaje) {
+    System.out.print(mensaje);
+    return sc.nextLine().trim();
+  }
+  //no deja avanzar si se deja el campo vacio
+  private String leerTextoObligatorio(String mensaje) {
+    String entrada = "";
+    while (entrada.isEmpty()) {
+      System.out.print(mensaje);
+      entrada = sc.nextLine().trim();
+      if (entrada.isEmpty()) {
+        System.out.println("¡Error! Este campo es obligatorio y no puede quedar vacío.");
+      }
+    }
+    return entrada;
+  }
+  //revisa caracter a caracter para ver si los caracteres son numeros
+  private boolean esNumeroEntero(String texto) {
+    if (texto == null || texto.isEmpty()) {
+      return false;
+    }
+    for (int i = 0; i < texto.length(); i++) {
+      char c = texto.charAt(i);
+      if (c < '0' || c > '9') {
+        return false;
+      }
+    }
+    return true;
+  }
+  
 }
