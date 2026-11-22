@@ -64,6 +64,27 @@ public class ConsolaView{
       System.out.println("[3] Actualizar estado de una llamada");
       System.out.println("[4] Anular llamada");
       System.out.println("[5] Regresar al Menú Principal");
+
+      int opcion= leerOpcion("> Seleccione una opción (1-5): ", 1, 5);
+      switch (opcion) {
+        case 1:
+          listarLlamadas();
+          break;
+        case 2:
+          registrarLlamada();
+          break;
+        case 3:
+          actualizarEstadoLlamada();
+          break;
+        case 4:
+          anularLlamada();
+          break;
+        case 5:
+          regresar=true;
+          break;
+        default:
+          break;
+      }
     }
   }
 }
