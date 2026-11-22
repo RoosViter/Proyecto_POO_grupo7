@@ -90,7 +90,7 @@ public class ConsolaView{
   private void listarLlamadas(){
     System.out.println();
     System.out.println("[Menú Principal > 1. Llamadas > 1.1. Lista de llamadas]");
-    ArrayList<Llamada> lista = controller.obtenerLlamadasOrdenadasRecientes();
+    ArrayList<Llamada> lista = controller.obtenerLlamadasOrdenadasReciente();
     System.out.println("Se encontraron " + lista.size() + " llamadas registradas.");
 
     if (lista.isEmpty()) {
@@ -270,7 +270,7 @@ public class ConsolaView{
         System.out.println("Anulacion cancelada");
       }
     }
-    pausar("Presione ENTER para regresar al Menu de Llamadas...")
+    pausar("Presione ENTER para regresar al Menu de Llamadas...");
   }
   //menu de operadores con su tabla y opciones
   private void menuOperadores() {
@@ -301,7 +301,7 @@ public class ConsolaView{
         case 2:
           eliminarOperador();
           break;
-        case 3;
+        case 3:
           regresar=true;
           break;
         default:
@@ -466,7 +466,7 @@ public class ConsolaView{
         case 2:
           regresar=true;
           break;
-        default
+        default:
           break;
       }
     }
@@ -574,7 +574,7 @@ public class ConsolaView{
   private String leerCedulaValida() {
     while (true) {
       String cedula = leerTexto("3. Cédula de identidad (10 dígitos, ej. 0912345678): ");
-      if (cedula.length() == 10 && esNumeroEntero(cedula){
+      if (cedula.length() == 10 && esNumeroEntero(cedula)){
         return cedula;
       }
       System.out.println("¡Error! La cédula debe contener exactamente 10 dígitos numéricos. Intente nuevamente.");
