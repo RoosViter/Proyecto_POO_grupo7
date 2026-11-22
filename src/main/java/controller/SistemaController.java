@@ -175,6 +175,16 @@ public class SistemaController{
     }
     return total;
   }
+  public ArrayList<Llamada> obtenerHistorialCiudadano(Ciudadano ciudadano){
+    ArrayList<Llamada> historial=new ArrayList<Llamada>();
+    for (int i=llamadas.size() -1; i>=0; i--){
+      Llamada ll= llamadas.get(i);
+      if(ll.getCiudadano().equals(ciudadano)){
+        historial.add(ll);
+      }
+    }
+    return historial;
+  }
   
   
   
