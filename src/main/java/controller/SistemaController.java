@@ -191,6 +191,14 @@ public class SistemaController{
     llamada.agregarNota(nota);
     return nota;
   }
+  public ArrayList<NotaSeguimiento> obtenerNotasOrdenadasRecientes(Llamada llamada){
+    ArrayList<NotaSeguimiento> origen= llamada.getNotas();
+    ArrayList<NotaSeguimiento> ordenadas= new ArrayList<NotaSeguimiento>();
+    for (int i=origen.size() -1; i>=0; i--){
+      ordenadas.add(origen.get(i));
+    }
+    return ordenadas;
+  }
   
   
   
