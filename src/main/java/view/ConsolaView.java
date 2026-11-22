@@ -237,6 +237,7 @@ public class ConsolaView{
       pausar("Presione ENTER para regresar al Menú de Llamadas...");
       return;
     }
+    //se enlistan las que se pueden anular
     System.out.println("Llamadas que se pueden anular (Registradas hoy):");
     mostrarSeparador();
     System.out.println("CÓDIGO | FECHA Y HORA | CIUDADANO | TIPO");
@@ -245,5 +246,30 @@ public class ConsolaView{
               + ll.getCiudadano().getNombreCompleto() + " | " + ll.getTipoEmergencia());
     }
     mostrarSeparador();
+    String codigo = leerTexto("> Ingrese el código de la llamada que desea anular (o ENTER para volver): ");
+    if (codigo.isEmpty()) {
+      return;
+    }
+    Llamada seleccionada = controller.buscarLlamadaPorCodigo(codigo);
+    if (seleccionada == null) {
+      System.out.println("¡Error! No se encontró una llamada con ese código.");
+    } else if (!seleccionada.getEstado().equals("Registrada")|| !seleccionada.getSoloFecha().equals(controller.getFechaActualSistema())) {
+      System.out.println("¡Error! Solo se pueden anular llamadas en estado \"Registrada\" con fecha de hoy.");
+    } else{
+      //se pide confirmacion antes de eliminar
+      System.out.println("¡ADVERTENCIA: ESTA ACCIÓN NO SE PUEDE DESHACER!");
+      System.out.println("[Llamada seleccionada]: " + seleccionada.getCodigo() + " - "
+                         + seleccionada.getTipoEmergencia() + " en " + seleccionada.getCiudad()
+                         + " (" + seleccionada.getBarrio() + ")");
+                 
+      if (leerConfirmacion("¿Confirmar anulación? (S/N): ")) {
+        System.out.println("Eliminando registro...");
+        controller.anularLlamada(seleccionada);
+        System.out.println("¡Éxito! La llamada " + seleccionada.getCodigo() + " ha sido anulada del sistema.");
+      } else{
+        System.out.println("Anulacion cancelada");
+      }
+    }
+    pausar("Presione ENTER para regresar al Menu de Llamadas...")
   }
 }
