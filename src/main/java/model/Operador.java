@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Operador extends Persona {
   private static int contadorOperadores = 0;
 
-  private String codigo:
+  private String codigo;
   private String turno;
   private String email;
 
