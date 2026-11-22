@@ -32,6 +32,14 @@ public class SistemaController{
 
     
   }
+  public SistemaController(){
+    this.operadores= new Arraylist<Operador>();
+    this.ciudadanos= new ArrayList<Ciudadano>();
+    this.llamadas= new ArrayList<Llamada>();
+    cargarDatosIniciales();
+
+    
+  }
   
   
   
