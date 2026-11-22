@@ -471,5 +471,30 @@ public class ConsolaView{
       }
     }
   }
-  
+  //se guarda una nota nueva ligada a un operador y a la llamada
+  private void anadirNotaSeguimiento(Llamada llamada) {
+    System.out.println();
+        System.out.println("[Notas de seguimiento > Añadir nota]");
+
+        ArrayList<Operador> ops = controller.getOperadores();
+        if (ops.isEmpty()) {
+          System.out.println("¡Error! No hay operadores registrados.");
+          return;
+        }
+    System.out.println("Seleccione el operador que registra la nota:");
+    for (int i = 0; i < ops.size(); i++) {
+      System.out.println("[" + (i + 1) + "] " + ops.get(i).getNombreCompleto());
+    }
+    int indiceOp = leerOpcion("Seleccione el número de operador: ", 1, ops.size());
+    Operador operadorSeleccionado = ops.get(indiceOp - 1);
+
+    String textoNota = leerTextoObligatorio("> Ingrese el texto de la nota: ");
+    NotaSeguimiento nuevaNota = controller.agregarNotaSeguimiento(llamada, operadorSeleccionado, textoNota);
+
+    System.out.println("GUARDANDO NOTA...");
+    System.out.println("¡Éxito! La nota ha sido guardada en la llamada " + llamada.getCodigo() + ":");
+    System.out.println("-> Registro: " + nuevaNota.getFechaHora());
+    System.out.println("-> Operador: " + operadorSeleccionado.getNombreCompleto());
+    pausar("Presione ENTER para actualizar y volver a Notas de seguimiento...");
+  }
 }
