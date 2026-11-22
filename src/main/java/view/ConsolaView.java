@@ -272,4 +272,42 @@ public class ConsolaView{
     }
     pausar("Presione ENTER para regresar al Menu de Llamadas...")
   }
+  //menu de operadores con su tabla y opciones
+  private void menuOperadores() {
+    boolean regresar = false;
+    while (!regresar){
+      System.out.println();
+      System.out.println("SISTEMA DE REGISTRO DE LLAMADAS ECU 911 (Versión 1.0)");
+      System.out.println("[Menú Principal > 2. Administrar operadores]");
+      System.out.println("Listado actual de operadores registrados:");
+      mostrarSeparador();
+      System.out.println("CÓDIGO | NOMBRE COMPLETO | TURNO | LLAMADAS ATENDIDAS");
+      for (Operador op : controller.getOperadores()) {
+        int totalLlamadas = controller.contarLlamadasDeOperador(op);
+        System.out.println(op.getCodigo() + " | " + op.getNombreCompleto() + " | " + op.getTurno() + " | " + totalLlamadas);
+      }
+      mostrarSeparador();
+      System.out.println("¿Qué acción desea realizar?");
+      System.out.println("[1] Agregar un nuevo operador");
+      System.out.println("[2] Eliminar un operador existente");
+      System.out.println("[3] Regresar al Menú Principal");
+
+      int opcion = leerOpcion("> Seleccione una opción (1-3): ", 1, 3);
+      //se llama al metodo segun la opcion
+      switch (opcion) {
+        case 1:
+          agregarOperador();
+          break;
+        case 2:
+          eliminarOperador();
+          break;
+        case 3;
+          regresar=true;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  
 }
