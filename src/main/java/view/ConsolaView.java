@@ -580,5 +580,30 @@ public class ConsolaView{
       System.out.println("¡Error! La cédula debe contener exactamente 10 dígitos numéricos. Intente nuevamente.");
     }
   }
-  
+  //convierte numero del menu que sea elegido al texto del tipo de emergencia que corresponda
+  private String obtenerTextoTipoEmergencia(int opcion) {
+    switch (opcion) {
+      case 1:
+        return "Energía";
+      case 2:
+        return "Civil";
+      case 3:
+        return "Tránsito";
+      case 4:
+        return "Medio ambiente";
+      default:
+        return "Otros";
+    }
+  }
+  //convierte numero del menu al nombre del turno que corresponda
+  private String obtenerTextoTurno(int opcion) {
+    switch (opcion) {
+      case 1:
+        return "Matutino";
+      case 2:
+        return "Vespertino";
+      default:
+        return "Nocturno";
+    }
+  }
 }
