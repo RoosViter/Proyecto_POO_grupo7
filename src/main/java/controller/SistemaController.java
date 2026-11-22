@@ -112,6 +112,25 @@ public class SistemaController{
     }
     return null;
   }
+  public boolean avanzarEstadoLlamada(Llamada llamada){
+    if (llamada==null){
+      return false;
+    }
+    return llamada.avanzarEstado();
+  }
+  public boolean anularLlamada(Llamada llamada){
+    if (llamada==null){
+      return false;
+    }
+    String fechaHoy= getFechaActualSistema();
+    if (llamada.getEstado().equals("Registrada") && llamada.getSoloFecha().equals(fechaHoy)){
+      return llamadas.remove(llamada);
+    }
+    return false;
+  }
+  public ArrayList<Operador> getOperadores(){
+    return operadores;
+  }
   
   
   
