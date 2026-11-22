@@ -86,6 +86,37 @@ public class Operador extends Persona {
   public void setEmail(String email) {
     this.email = email;
   }
+
+  // Sobrescribe el resumen de Persona para incluir codigo y turno del operador.
+  @Override
+  public String obtenerResumen() {
+    return codigo + " - " + getNombreCompleto() + " (" + turno + ") ";
+  }
+
+  // Devuelve el resumen con codigo, nombre y turno como representacion en texto.
+  @Override
+  public String toString() {
+    return obtenerResumen();
+  }
+
+  // Compara dos operadores por su codigo unico y misma clase exacta
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Operador operador = (Operador) o;
+    return Objects.equals(codigo, operador.codigo);
+  }
+
+  // Genera el codigo hash a partir del codigo del operador para colecciones.
+  @Override
+  public int hashCode() {
+    return Objects.hash(codigo);
+  }
 }
   
   
