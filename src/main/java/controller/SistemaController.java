@@ -56,6 +56,28 @@ public class SistemaController{
     }
     return resultado;
   }
+  public ArrayList<Llamada> obtenerLlamadasPendientes(){
+    ArrayList<Llamada> pendientes= new Arraylist<Llamada>();
+    for (int=llamadas.size() -1; i>=0; i--){
+      Llamada ll= llamadas.get(i);
+      if(!ll.getEstado().equals("Atentida"){
+        pendientes.add(ll);
+        
+      }
+    }
+    return pendientes;
+  }
+  public ArrayList<Llamada> obtenerLlamadasAnulablesHoy(){
+    String fechaHoy= getFechaActualSistema();
+    ArrayList<Llamada> anulables = new ArrayList<Llamada>();
+    for (int i=llamadas.size() -1; i>=0; i--){
+      Llamada ll=llamadas.get(i);
+      if (ll.getEstado().equals("Registrada") && ll.getSoloFecha().equals(fechaHoy)) {
+        anulables.add(ll);
+      }
+    }
+    return anulables;
+  }
   
   
   
