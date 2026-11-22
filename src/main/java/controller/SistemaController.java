@@ -154,6 +154,27 @@ public class SistemaController{
     }
     return total;
   }
+  public boolean eliminarOperador(Operador operador){
+    if (operador==null){
+      return false;
+    }
+    if (contarLlamadasDeOperador(operador)>0){
+      return false;
+    }
+    return operadores.remove(operador);
+  }
+  public ArrayList<Ciudadano> getCiudadanos(){
+    return ciudadanos; 
+  }
+  public int contarLlamadasDeCiudadano(Ciudadano ciudadano){
+    int total=0;
+    for (Llamada ll: llamadas){
+      if(ll.getCiudadano().equals(ciudadano)){
+        total++;
+      }
+    }
+    return total;
+  }
   
   
   
