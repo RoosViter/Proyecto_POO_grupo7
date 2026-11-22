@@ -536,5 +536,49 @@ public class ConsolaView{
     }
     return true;
   }
+  //lee un numero dentro de un rango min y max
+  private int leerOpcion(String mensaje, int min, int max) {
+    int opcion = -1;
+    boolean valido = false;
+    while (!valido) {
+      System.out.print(mensaje);
+      String texto = sc.nextLine().trim();
+      if (esNumeroEntero(texto)) {
+        opcion = Integer.parseInt(texto);
+        if (opcion >= min && opcion <= max) {
+          valido = true;
+        } else{
+          System.out.println("¡Error! Opción fuera de rango (" + min + "-" + max + "). Intente nuevamente.");
+        }
+      }else{
+        System.out.println("¡Error! Debe ingresar un número entero válido.");
+      }
+    }
+    return opcion;
+  }
+  //pide s o n para confirmar
+  private boolean leerConfirmacion(String mensaje) {
+    while (true) {
+      System.out.print(mensaje);
+      String resp = sc.nextLine().trim();
+      if (resp.equalsIgnoreCase("S")) {
+        return true;
+      } else if (resp.equalsIgnoreCase("N")) {
+        return false;
+      } else{
+        System.out.println("¡Error! Respuesta inválida. Ingrese S para Sí o N para No.");
+      }
+    }
+  }
+  //valida la cedula revisando que tenga 10 numeros
+  private String leerCedulaValida() {
+    while (true) {
+      String cedula = leerTexto("3. Cédula de identidad (10 dígitos, ej. 0912345678): ");
+      if (cedula.length() == 10 && esNumeroEntero(cedula){
+        return cedula;
+      }
+      System.out.println("¡Error! La cédula debe contener exactamente 10 dígitos numéricos. Intente nuevamente.");
+    }
+  }
   
 }
