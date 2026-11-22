@@ -98,6 +98,20 @@ public class SistemaController{
     return nuevo;
     
   }
+  public Llamada registrarLlamada(Operador operador, Ciudadano ciudadano, String tipoEmergencia, String ciudad, String barrio, String detalle){
+    String fechaHora= obtenerFechaHoraSistema();
+    LLamada nueva= new Llamada (fechaHora, operador, ciudadano, tipoEmergencia, ciudad, barrio, detalle);
+    llamadas.add(nueva);
+    return nueva;
+  }
+  public Llamada buscarLlamadaPorCodigo(String codigo){
+    for (Llamada ll: llamadas){
+      if (ll.getCodigo().equalsIgnoreCase(codigo)){
+        return ll;
+      }
+    }
+    return null;
+  }
   
   
   
