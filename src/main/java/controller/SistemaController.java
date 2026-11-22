@@ -1,10 +1,10 @@
 package controller;
 import java.util.ArrayList;
-import java.util.LocalDateTime;
-import java.util.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import model.Ciudadano;
 import model.Operador;
-import model.LLamada;
+import model.Llamada;
 import model.NotaSeguimiento;
 
 public class SistemaController{
@@ -14,7 +14,7 @@ public class SistemaController{
   private static final DateTimeFormatter FORMATO_FECHA_HORA =
           DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
   private static final DateTimeFormatter FORMATO_SOLO_FECHA =
-          DateTimeFormatter.ofPattern("dd/MM/yyyy";
+          DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
   private void cargarDatosIniciales(){
@@ -26,14 +26,14 @@ public class SistemaController{
     ciudadanos.add(ciuInicial);
 
     Llamada llamInicial= new Llamada(fechaHoy + " 07:50", opInicial, ciuInicial, "Tránsito", "Guayaquil", "Urdesa", "Choque entre un bus y un automóvil en la av. Víctor Emilio Estrada.");
-    NotaSeguimiento notaInicial= new NotaSeguimiento (fechaHoy + "07:50", opInicial; "Se despacha unidad de tránsito y ambulancia al sector.");
+    NotaSeguimiento notaInicial= new NotaSeguimiento (fechaHoy + "07:50", opInicial, "Se despacha unidad de tránsito y ambulancia al sector.");
     llamInicial.agregarNota(notaInicial);
     llamadas.add(llamInicial);
 
     
   }
   public SistemaController(){
-    this.operadores= new Arraylist<Operador>();
+    this.operadores= new ArrayList<Operador>();
     this.ciudadanos= new ArrayList<Ciudadano>();
     this.llamadas= new ArrayList<Llamada>();
     cargarDatosIniciales();
@@ -51,16 +51,16 @@ public class SistemaController{
   }
   public ArrayList<Llamada> obtenerLlamadasOrdenadasReciente() {
     ArrayList<Llamada> resultado= new ArrayList<Llamada>();
-    for (int= llamadas.size() - 1; i>=0; i--){
+    for (int i= llamadas.size() - 1; i>=0; i--){
       resultado.add(llamadas.get(i));
     }
     return resultado;
   }
   public ArrayList<Llamada> obtenerLlamadasPendientes(){
-    ArrayList<Llamada> pendientes= new Arraylist<Llamada>();
-    for (int=llamadas.size() -1; i>=0; i--){
+    ArrayList<Llamada> pendientes= new ArrayList<Llamada>();
+    for (int i=llamadas.size() -1; i>=0; i--){
       Llamada ll= llamadas.get(i);
-      if(!ll.getEstado().equals("Atentida"){
+      if(!ll.getEstado().equals("Atentida")){
         pendientes.add(ll);
         
       }
@@ -100,7 +100,7 @@ public class SistemaController{
   }
   public Llamada registrarLlamada(Operador operador, Ciudadano ciudadano, String tipoEmergencia, String ciudad, String barrio, String detalle){
     String fechaHora= obtenerFechaHoraSistema();
-    LLamada nueva= new Llamada (fechaHora, operador, ciudadano, tipoEmergencia, ciudad, barrio, detalle);
+    Llamada nueva= new Llamada (fechaHora, operador, ciudadano, tipoEmergencia, ciudad, barrio, detalle);
     llamadas.add(nueva);
     return nueva;
   }
