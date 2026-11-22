@@ -309,5 +309,22 @@ public class ConsolaView{
       }
     }
   }
-  
+  private void agregarOperador() {
+    System.out.println();
+    System.out.println("[Administrar operadores > Agregar operador]");
+    String nombres = leerTextoObligatorio("1. Nombres: ");
+    String apellidos = leerTextoObligatorio("2. Apellidos: ");
+    System.out.println("3. Turno:");
+    System.out.println("[1] Matutino");
+    System.out.println("[2] Vespertino");
+    System.out.println("[3] Nocturno");
+    int opTurno = leerOpcion("Seleccione una opción (1-3): ", 1, 3);
+    String turno = obtenerTextoTurno(opTurno);
+    String email = leerTexto("4. Email (opcional, ENTER para omitir): ");
+
+    Operador nuevo = controller.agregarOperador(nombres, apellidos, turno, email);
+    System.out.println("¡Éxito! El operador " + nuevo.getNombreCompleto()
+                       + " ha sido registrado con el código " + nuevo.getCodigo() + ".");
+    pausar("Presione ENTER para actualizar y volver a Administrar operadores...");
+  }
 }
