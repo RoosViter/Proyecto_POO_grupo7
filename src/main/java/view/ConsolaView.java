@@ -420,5 +420,56 @@ public class ConsolaView{
     }
     pausar("Presione ENTER para regresar a Administrar ciudadanos...");
   }
+  //menu para ver y agregar notas de seguimiento de una llamada
+  private void menuNotasSeguimiento() {
+    System.out.println();
+    System.out.println("SISTEMA DE REGISTRO DE LLAMADAS ECU 911 (Versión 1.0)");
+    System.out.println("[Menú Principal > 4. Notas de seguimiento]");
+
+    String codigo = leerTexto("> Ingrese el código de la llamada (o ENTER para volver): ");
+      if (codigo.isEmpty()) {
+        return;
+      }
+    Llamada llamada = controller.buscarLlamadaPorCodigo(codigo);
+    if (llamada == null) {
+      System.out.println("¡Error! No existe una llamada con el código " + codigo + ".");
+      pausar("Presione ENTER para regresar al Menú Principal...");
+      return;
+    }
+    boolean regresar = false;
+    while (!regresar) {
+      System.out.println();
+      System.out.println("Notas de la llamada " + llamada.getCodigo() + " (Ordenadas desde la más reciente):");
+      mostrarSeparador();
+      //se traen las notas ya ordenadas de la mas nueva a la mas vieja
+      ArrayList<NotaSeguimiento> notas = controller.obtenerNotasOrdenadasRecientes(llamada);
+      if (notas.isEmpty()) {
+        System.out.println("Esta llamada aún no tiene notas de seguimiento.");
+      } else{
+        System.out.println("FECHA Y HORA | OPERADOR | NOTA");
+        for (NotaSeguimiento nota : notas) {
+          System.out.println(nota.toString());
+        }
+      }
+      mostrarSeparador();
+      
+      System.out.println("¿Qué acción desea realizar?");
+      System.out.println("[1] Añadir una nueva nota");
+      System.out.println("[2] Regresar al Menú Principal");
+
+      int opcion = leerOpcion("> Seleccione una opción (1-2): ", 1, 2);
+
+      switch (opcion) {
+        case 1:
+          anadirNotaSeguimiento(llamada);
+          break;
+        case 2:
+          regresar=true;
+          break;
+        default
+          break;
+      }
+    }
+  }
   
 }
