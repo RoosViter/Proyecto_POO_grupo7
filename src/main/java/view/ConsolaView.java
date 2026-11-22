@@ -53,4 +53,17 @@ public class ConsolaView{
       }
     }
   }
+  private void menuLlamadas(){
+    boolean regresar=false;
+    while (!regresar){
+      System.out.println();
+      System.out.println("SISTEMA DE REGISTRO DE LLAMADAS ECU 911 (Versión 1.0)");
+      System.out.println("[Menú Principal > 1. Administrar llamadas de emergencia]");
+      System.out.println("[1] Lista de llamadas registradas");
+      System.out.println("[2] Registrar llamada");
+      System.out.println("[3] Actualizar estado de una llamada");
+      System.out.println("[4] Anular llamada");
+      System.out.println("[5] Regresar al Menú Principal");
+    }
+  }
 }
